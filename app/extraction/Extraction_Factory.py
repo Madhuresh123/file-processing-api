@@ -1,4 +1,4 @@
-from .pdf_Extraction import PdfExtraction
+from .pdf_Extraction import PdfExtraction, PdfScannedExtraction
 from .img_Extraction import ImageExtraction
 from .html_Extraction import HtmlExtraction
 
@@ -9,7 +9,7 @@ class ExtractionFactory:
 
     _extractors = {
         "pdf_text": PdfExtraction(),
-        "pdf_scanned": ImageExtraction(),
+        "pdf_scanned": PdfScannedExtraction(),
         "jpg": ImageExtraction(),
         "png": ImageExtraction(),
         "html": HtmlExtraction(),
