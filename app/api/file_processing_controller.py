@@ -19,7 +19,9 @@ class FileProcessingController:
         file: UploadFile = File(...),
         db = Depends(get_db)
     ):
-        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        suffix = os.path.splitext(file.filename)[1]
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
             tmp.write(await file.read())
             tmp_path = tmp.name
 

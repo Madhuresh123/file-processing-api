@@ -13,4 +13,8 @@ pdf2image
 pytest
 pytest-cov
 httpx
+python-docx
+pandas
+openpyxl
+
 

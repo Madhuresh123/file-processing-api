@@ -1,6 +1,8 @@
 from .pdf_Extraction import PdfExtraction, PdfScannedExtraction
 from .img_Extraction import ImageExtraction
 from .html_Extraction import HtmlExtraction
+from .word_Extraction import WordExtraction
+from .excel_Extraction import ExcelExtraction
 
 class ExtractionFactory:
     """
@@ -13,6 +15,8 @@ class ExtractionFactory:
         "jpg": ImageExtraction(),
         "png": ImageExtraction(),
         "html": HtmlExtraction(),
+        "word": WordExtraction(),
+        "excel": ExcelExtraction(), 
     }
 
     @staticmethod

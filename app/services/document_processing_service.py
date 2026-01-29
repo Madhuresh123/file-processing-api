@@ -14,6 +14,11 @@ class DocumentProcessingService:
         detection = self.detector.detect(file_path)
         category = detection["category"]
 
+        if category == "unknown":
+            raise ValueError(
+                "Unsupported file type. Allowed: PDF, Word, Excel, Image, HTML"
+            )
+
         # Extract
         text = self.extractor.extract(file_path, category)
 

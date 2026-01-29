@@ -20,6 +20,12 @@ class MimeDetector(BaseDetector):
         if mime == "image/png":
             return {"category": "png"}
 
+        if mime == "word":
+            return {"category": "word"}
+
+        if mime == "excel" or mime == "spreadsheet":
+            return {"category": "excel"}
+
         if mime in [
             "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
