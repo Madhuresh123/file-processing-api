@@ -31,7 +31,7 @@ class FileProcessingController:
                 file_path=tmp_path,
                 filename=file.filename
             )
-            return result   # ✅ RETURNS document_id
+            return result   
         finally:
             if os.path.exists(tmp_path):
                 os.remove(tmp_path)
