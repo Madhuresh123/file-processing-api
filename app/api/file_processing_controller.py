@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Depends
 import tempfile, os
-
+from fastapi.responses import RedirectResponse
 from app.services.document_processing_service import DocumentProcessingService
 from app.db.dependencies import get_db
 
@@ -31,7 +31,17 @@ class FileProcessingController:
                 file_path=tmp_path,
                 filename=file.filename
             )
-            return result   
+
+            document_id = result["document_id"]
+
+            return RedirectResponse(
+                url=f"/documents/{document_id}",
+                status_code=303
+            )
+
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
+    
         finally:
             if os.path.exists(tmp_path):
                 os.remove(tmp_path)

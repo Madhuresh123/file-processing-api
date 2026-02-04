@@ -51,3 +51,5 @@ class DocumentProcessingService:
             "category": category,
             "text_length": len(normalized_text)
         }
+
+        # return document.id, category

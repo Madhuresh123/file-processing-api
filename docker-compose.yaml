@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   api:
     build: .
@@ -18,6 +16,14 @@ services:
     volumes:
       - ./app:/app/app
     restart: unless-stopped
+
+  frontend:
+    build: ./client
+    container_name: file-processing-ui
+    ports:
+      - "3000:80"
+    depends_on:
+      - api  
 
   postgres:
     image: postgres:15
