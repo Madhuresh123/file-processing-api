@@ -14,7 +14,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./app:/app/app
+      - ./:/app
     restart: unless-stopped
 
   frontend:

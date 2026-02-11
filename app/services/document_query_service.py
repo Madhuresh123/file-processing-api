@@ -13,3 +13,16 @@ class DocumentQueryService:
 
     def list_documents(self, db, limit: int, offset: int):
         return self.repo.get_all(db, limit, offset)
+    
+
+    def update_document(self, db, document_id: int, raw_text: str):
+        updated = self.repo.update_raw_text(
+            db=db,
+            document_id=document_id,
+            raw_text=raw_text
+        )
+
+        if not updated:
+            raise ValueError("Document not found")
+
+        return updated

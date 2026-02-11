@@ -39,12 +39,6 @@ class DocumentProcessingService:
         # redirectApi
         # localhost:8000/file/process -> localhost:8000/documents/{id}
 
-        # showExtraction
-
-        # editExtraction
-
-        # saveExtraction
-
         return {
             "document_id": document.id,   
             "filename": filename,

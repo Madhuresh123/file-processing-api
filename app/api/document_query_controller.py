@@ -3,7 +3,8 @@ from app.db.dependencies import get_db
 from app.services.document_query_service import DocumentQueryService
 from app.schemas.document import (
     DocumentResponse,
-    DocumentDetailResponse
+    DocumentDetailResponse,
+    DocumentUpdateRequest
 )
 
 class DocumentQueryController:
@@ -21,6 +22,9 @@ class DocumentQueryController:
         self.router.get("/{document_id}", response_model=DocumentDetailResponse)(
             self.get_by_id
         )
+        self.router.put("/{document_id}", response_model=DocumentDetailResponse)(
+            self.update_document
+        )
 
     def get_all(
         self,
@@ -37,5 +41,20 @@ class DocumentQueryController:
     ):
         try:
             return self.service.get_document(db, document_id)
+        except ValueError:
+            raise HTTPException(status_code=404, detail="Document not found")
+
+    def update_document(
+        self,
+        document_id: int,
+        payload: DocumentUpdateRequest,
+        db = Depends(get_db)
+    ):
+        try:
+            return self.service.update_document(
+                db=db,
+                document_id=document_id,
+                raw_text=payload.raw_text
+            )
         except ValueError:
             raise HTTPException(status_code=404, detail="Document not found")

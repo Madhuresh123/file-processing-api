@@ -13,3 +13,6 @@ class DocumentResponse(BaseModel):
 
 class DocumentDetailResponse(DocumentResponse):
     raw_text: str
+
+class DocumentUpdateRequest(BaseModel):
+    raw_text: str

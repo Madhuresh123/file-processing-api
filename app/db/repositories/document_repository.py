@@ -24,3 +24,19 @@ class DocumentRepository:
             .limit(limit)
             .all()
         )
+    
+    def update_raw_text(self, db, document_id: int, raw_text: str):
+        doc = (
+            db.query(Document)
+            .filter(Document.id == document_id)
+            .first()
+        )
+
+        if not doc:
+            return None
+
+        doc.raw_text = raw_text
+        db.commit()
+        db.refresh(doc)
+
+        return doc
