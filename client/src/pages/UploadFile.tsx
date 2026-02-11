@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "./UploadPage.css";
+import { useNavigate } from "react-router-dom";
+
 
 export default function UploadFile() {
 
+  const navigate = useNavigate();
   const [file, setFile] = useState<File | null>(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,6 +31,8 @@ export default function UploadFile() {
 
       const data = await response.json();
       setResult(data);
+      navigate(`/documents/${data.id}`);
+
     } catch (error) {
       alert("Upload failed");
     } finally {
